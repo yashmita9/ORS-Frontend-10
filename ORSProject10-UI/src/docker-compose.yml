@@ -1,0 +1,9 @@
+services:
+  project10-frontend:
+    build: .
+    image: project10-frontend:latest
+    container_name: project10-frontend
+    depends_on:
+      - project10-backend
+    ports:
+      - "8081:8080"  # map container 8080 to host 8081
