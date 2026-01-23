@@ -88,7 +88,7 @@ export function myHttpLoader(http: HttpClient) {
     MessageListComponent,
     UserComponent,
     UserListComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
 
     RoleComponent,
     RoleListComponent,
