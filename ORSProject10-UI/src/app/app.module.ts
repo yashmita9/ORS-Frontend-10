@@ -59,6 +59,8 @@ import { EmployeelistComponent } from './employee/employeelist.component';
 
 
 
+import { PageNotFoundComponent } from './page-not-found.component';
+
 
 
 // import { AuthService } from './auth.service';
@@ -86,6 +88,7 @@ export function myHttpLoader(http: HttpClient) {
     MessageListComponent,
     UserComponent,
     UserListComponent,
+    PageNotFoundComponent,
 
     RoleComponent,
     RoleListComponent,
