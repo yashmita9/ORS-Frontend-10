@@ -18,6 +18,8 @@ export class UserComponent extends BaseCtl {
   fileToUpload: File = null;
   userForm: FormGroup = null;
   uploadForm: FormGroup;
+
+  
   constructor(public locator: ServiceLocatorService, public route: ActivatedRoute, private httpClient: HttpClient) {
     super(locator.endpoints.USER, locator, route);
   }
@@ -97,7 +99,8 @@ export class UserComponent extends BaseCtl {
     console.log(this.form.data.id + 'after super.submit-----');
     this.onSubmitProfile(this.fileToUpload, this.userForm).subscribe(data => {
 
-      console.log(this.fileToUpload);
+      console.log('this.fileToUpload user.component.ts'+this.fileToUpload);
+      console.log('this.userFoem user.component.ts'+this.userForm);
     }, error => {
       console.log(error);
     });

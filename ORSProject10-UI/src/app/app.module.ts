@@ -52,12 +52,12 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { FooterComponent } from './footer/footer.component';
 import { AuthService } from './auth.service';
 import { MyprofileComponent } from './user/myprofile.component';
-import { ProductComponent } from './product/product.component';
-import { ProductListComponent } from './product/product-list.component';
-import { CustomerComponent } from './customer/customer.component';
-import { CustomerListComponent } from './customer/customer-list.component';
-import { TransportationComponent } from './transportation/transportation.component';
-import { TransportationListComponent } from './transportation/transportation-list.component';
+import { EmployeeComponent } from './employee/employee.component';
+import { EmployeelistComponent } from './employee/employeelist.component';
+
+
+
+
 
 
 
@@ -107,13 +107,13 @@ export function myHttpLoader(http: HttpClient) {
     SpinnerComponent,
     FooterComponent,
     MyprofileComponent,
-    ProductComponent,
-    ProductListComponent,
-    CustomerComponent,
-    CustomerListComponent,
-    TransportationComponent,
-    TransportationListComponent,
+    EmployeeComponent,
+    EmployeelistComponent
 
+  
+ 
+
+    
   ],
   imports: [
     BrowserModule,
@@ -130,7 +130,9 @@ export function myHttpLoader(http: HttpClient) {
   ],
   providers: [
     {
-      provide: HTTP_INTERCEPTORS, useClass: AuthService, multi: true
+      provide: HTTP_INTERCEPTORS, 
+      useClass: AuthService, 
+      multi: true
     },
     HttpServiceService,
     DataValidator,

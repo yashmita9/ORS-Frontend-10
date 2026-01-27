@@ -41,7 +41,13 @@ background-size: cover;width:100%;
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             {{form.message}}
           </div>
-
+          
+<div *ngIf="form.error && form.message == 'Database service is currently unavailable. Please try again later.'"
+            class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{form.message | translate}}
+          </div>
+          
           <div *ngIf="form.error && form.message != null" class="alert alert-danger alert-dismissible">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             {{form.message}}
@@ -76,7 +82,7 @@ background-size: cover;width:100%;
                 <div class="input-group-prepend">
                   <div class="input-group-text"><i class="fa fa-user-circle grey-text"></i> </div>
                 </div>
-                <input type="text" name="fn" [(ngModel)]="form.data.firstName" class="form-control"
+                <input type="text" name="firstName" [(ngModel)]="form.data.firstName" class="form-control"
                   placeholder="{{'Enter First Name'  | translate }}">
               </div>
             </div><span *ngIf="form.inputerror.firstName != null" class="alertRedColor" style=" color: red;">
@@ -93,7 +99,7 @@ background-size: cover;width:100%;
                 <div class="input-group-prepend">
                   <div class="input-group-text"><i class="fa fa-user grey-text"></i> </div>
                 </div>
-                <input type="text" name="ln" [(ngModel)]="form.data.lastName" class="form-control"
+                <input type="text" name="lastName" [(ngModel)]="form.data.lastName" class="form-control"
                   placeholder="{{'Enter Last Name'  | translate }}">
               </div>
             </div><span *ngIf="form.inputerror.lastName != null" class="alertRedColor" style=" color: red;">

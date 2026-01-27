@@ -26,6 +26,10 @@ export class BaseListCtl extends BaseCtl {
     this.isMasterSel = false;
   }
 
+  display() {
+    this.search();
+  }
+
   submit() {
     this.form.pageNo = 0;
     if (this.form.searchParams.roleId == "undefined" || this.form.searchParams.id == "undefined") {
@@ -44,21 +48,28 @@ export class BaseListCtl extends BaseCtl {
   }
 
 
-    next() {
-        this.isMasterSel = false;
-        this.form.pageNo++;
-        this.search();
-    }
+  next() {
+    this.form.pageNo++;
+    this.display();
+
+
+    this.isMasterSel = false;
+    //  this.searchOperation('previous');
+  }
 
   exit() {
 
     location.reload();
   }
-   previous() {
-        this.isMasterSel = false;
-        this.form.pageNo--
-        this.search();
+  previous() {
+    if (this.form.pageNo > 0) {
+      this.form.pageNo--
+      //  this.display(); 
+      this.isMasterSel = false;
+      // this.searchOperation('previous');
+      this.display();
     }
+  }
 
 
 
@@ -84,24 +95,34 @@ export class BaseListCtl extends BaseCtl {
   }
 
   deleteMany() {
-    
+    console.log('delete Many Records starts ');
+    console.log('this.form.pageNo ' + this.form.pageNo);
     this.form.error = false;
     this.deleteRecordList.length = 0;
+    console.log('record deleting start ')
+    var isRecordSelected: boolean = false;
 
     this.checkboxes.forEach((element) => {
       if (element.nativeElement.checked) {
+        // console.log('record deleting ' + element.nativeElement.id)
         this.deleteRecordList.push(element.nativeElement.id);
+        isRecordSelected = true;
       }
     });
 
-    if (this.deleteRecordList.length > 0) {
-            this.form.pageNo = 0;
-            super.deleteMany(this.deleteRecordList + '?pageNo=' + this.form.pageNo);
-        } else {
-            this.form.error = true;
-            this.form.message = "Select at least one record";
-        }
+    if (isRecordSelected) {
+      console.log('record(s) for delete ' + this.deleteRecordList);
+      super.deleteMany(this.deleteRecordList + '?pageNo=' + this.form.pageNo, function () {
+        //  this.search();  
+
+      });
+    } else {
+      this.form.message = "Select Atleast One Record";
+      this.form.error = true;
+      console.log('No record(s) for delete ')
+    }
     this.isMasterSel = false;
+    console.log('delete Many Records ends ');
   }
 
 

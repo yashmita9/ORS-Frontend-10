@@ -1,24 +1,12 @@
-# Stage 1: Build Angular app (Angular 7 compatible)
-FROM node:14-alpine AS build
+FROM nginx:alpine
 
-WORKDIR /app
+# Remove default nginx html
+RUN rm -rf /usr/share/nginx/html/*
 
-# Install Angular CLI compatible with Angular 7
-RUN npm install -g @angular/cli@7.3.10
+# Copy Angular production build
+COPY dist/P10-UI/ /usr/share/nginx/html/
 
-COPY package*.json ./
-RUN npm install --legacy-peer-deps
+EXPOSE 80
 
-COPY . .
-RUN npm run build --prod
+CMD ["nginx", "-g", "daemon off;"]
 
-# Stage 2: Deploy to Tomcat
-FROM tomcat:9.0-jdk17-temurin
-
-RUN rm -rf /usr/local/tomcat/webapps/*
-
-# ⚠️ Replace ORSProject10-UI with your actual dist folder name
-COPY --from=build /app/dist/ORSProject10-UI /usr/local/tomcat/webapps/ROOT
-
-EXPOSE 8080
-CMD ["catalina.sh", "run"]

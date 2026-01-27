@@ -19,9 +19,14 @@ export class EndpointServiceService {
   public FACULTY = this.SERVER_URL + "/Faculty";
   public COURSE = this.SERVER_URL + "/Course";
   public TIMETABLE = this.SERVER_URL + "/TimeTable";
-  public TRANSPORTATION = this.SERVER_URL + "/Transportation";
   public JASPERREPORT = this.SERVER_URL + "/Jasper";
 
-  public CUSTOMER = this.SERVER_URL + "/Customer";
+  public EMPLOYEE = this.SERVER_URL + "/Employee"
+ 
+
+
+
+ 
+
 
 }

@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
   loginId: string;
   userid: string;
 
-  constructor( private router: Router,private translate: TranslateService, private route: ActivatedRoute, private httpService: HttpServiceService, private myservice: HttpClient, private servicelocator: ServiceLocatorService) {
+  constructor(private translate: TranslateService, private route: ActivatedRoute, private httpService: HttpServiceService, private myservice: HttpClient, private servicelocator: ServiceLocatorService) {
 
     console.log('DefaultLang ' + localStorage.getItem("locale"));
     if (localStorage.getItem("locale") != null) {
@@ -86,26 +86,20 @@ export class NavbarComponent implements OnInit {
   goToLink() {
      window.open('assets/doc/index.html','_blank');
   }
- 
   logout() {
    
     var _self = this;
     console.log('Logout', this.form);
     _self.httpService.get("http://localhost:8084/User/logout", function (res) {
- localStorage.clear();
- console.log("outside success............")
- console.log(res.success)
-      if (res.success) {
-        console.log("Inside success............")
-        console.log(res.result.message)
-        _self.form.message = res.result.message;
-        console.log(_self.form.message)
-      };
-       _self.router.navigateByUrl('login/true')
-      // _self.router.navigateByUrl('/login?msg=' + _self.form.message);
 
+      _self.servicelocator.router.navigateByUrl('/login/true');
+      if (res.success) {
+        localStorage.clear();
+        _self.form.message = res.result.message;
+        
+      };
 
     });
 
   }
-  }
+}

@@ -47,6 +47,8 @@ export class UserListComponent extends BaseListCtl {
   retrieveResonse: any;
   message: string;
   imageName: any;
+
+  
   constructor(public locator: ServiceLocatorService, public route: ActivatedRoute, private httpClient: HttpClient) {
     super(locator.endpoints.USER, locator, route);
   }

@@ -44,8 +44,12 @@ export class LoginComponent implements OnInit {
    * Initialize component
    */
   ngOnInit() {
+
+    const reason = new URLSearchParams(window.location.search).get('reason');
+
+
     //this.userSessionCheck();
-    if(this.httpService.form.error == true){
+    if(reason === 'expired' || this.httpService.form.error == true){
       this.form.message = this.httpService.form.message;
       this.form.error = this.httpService.form.error;
     }
@@ -56,6 +60,12 @@ export class LoginComponent implements OnInit {
     })
     if(a=='true'){
        this.form.message = 'Logout Successfully';
+     }
+     // if(a=='truee'){
+     //   this.form.message = 'Your Session has been Expired! Please Re-Login';
+     // }
+     if(a=='trueee'){
+       this.form.message = 'Database service is currently unavailable. Please try again later.';
      }
     }
 

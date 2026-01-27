@@ -1,0 +1,169 @@
+<app-navbar></app-navbar>
+
+<style>
+  .grad {
+    background-image: linear-gradient(to bottom right, rgb(32, 168, 168), rgb(219, 231, 237));
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding-bottom: 25px;
+  }
+
+  .background {
+    padding-top: 3%;
+    padding-bottom: 13%;
+    background: url('assets/files/wall.jpg') no-repeat center center;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
+    height: auto;
+  }
+
+  .required-field {
+    color: red;
+  }
+
+  .alertRedColor {
+    color: red;
+  }
+</style>
+
+<div class="container-fluid background" style="padding-top: 8%">
+  <div class="row justify-content-center">
+    <div class="col-sm-8 col-md-6 col-lg-4">
+      <div class="card" >
+        <div class="card-body shadow-lg grad">
+          <form name="assetForm">
+            <h2 *ngIf="!form.data.id > 0" class="text-primary font-weight-bold" style="text-align: center;">
+              {{ 'Add employee' | translate }}
+            </h2>
+            <h2 *ngIf="form.data.id > 0" class="text-primary font-weight-bold" style="text-align: center;">
+              {{ 'Update employee' | translate }}
+            </h2>
+
+            <!-- Form error messages -->
+            <div *ngIf="form.error && form.message" class="alert alert-danger alert-dismissible fade show">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              {{ form.message }}
+            </div>
+            <div *ngIf="!form.error && form.message" class="alert alert-success alert-dismissible fade show">
+              <button type="button" class="close" data-dismiss="alert">&times;</button>
+              {{ form.message }}
+            </div>
+
+            <!-- Name Field with Validation -->
+
+            <div class="form-group pt-2">
+              <label>
+                <b>{{ 'Name' | translate }}</b>
+                <span class="required-field">*</span>
+              </label>
+
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fa fa-user grey-text"></i></div>
+                </div>
+
+                <input type="text" name="name" [(ngModel)]="form.data.name" class="form-control"
+                  #name="ngModel" maxlength="20" pattern="^[A-Za-z ]+$"
+                  (keydown)="filterInputS($event, 'errorMessagename', 20, 'char')"
+                  placeholder="{{ 'Enter Name' | translate }}">
+              </div>
+
+              <!-- Custom error messages from component -->
+              <span *ngIf="form.inputerror.name" class="alertRedColor">{{ form.inputerror.name }}</span>
+            </div>
+
+
+            <div class="form-group pt-2">
+              <label>
+                <b>{{ 'salary' | translate }}</b>
+                <span class="required-field">*</span>
+              </label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fas fa-map-marker grey-text"></i></div>
+                </div>
+                <input type="number" name="salary" [(ngModel)]="form.data.salary" class="form-control"
+                   min="0" step="1000" maxlength="35"
+                  placeholder="{{ 'Enter salary' | translate }}">
+              </div>
+              <span *ngIf="form.inputerror.salary" class="alertRedColor">{{ form.inputerror.salary }}</span>
+            </div>
+
+            <div class="form-group pt-2">
+              <label>
+                <b>{{ 'post' | translate }}</b>
+                <span class="required-field">*</span>
+              </label>
+
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-phone grey-text"></i>
+                  </div>
+                </div>
+
+                <input type="text" name="post" [(ngModel)]="form.data.post" #post="ngModel"
+                  class="form-control"  maxlength="20" pattern="^[0-9]{10}$"
+                  (keydown)="filterInputS($event, 'errorMessagepost', 10, 'int')"
+                  placeholder="{{ 'Enter post' | translate }}">
+              </div>
+
+              <!-- Custom validation messages from component -->
+              <span *ngIf="form.inputerror?.post" class="alertRedColor">{{ form.inputerror.post
+                }}</span>
+            </div>
+
+
+            <div class="form-group pt-2">
+              <label><b>{{ 'address' | translate }}</b><span class="required-field">*</span></label>
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text"><i class="fa fa-paint-brush grey-text"></i></div>
+                </div>
+                <select class="form-control" name="address" [(ngModel)]="form.data.address"
+                  aria-label="ngSelected" required>
+                  <option [ngValue]="undefined">{{ 'Select address' | translate }}</option>
+                  <option value="indore">{{ 'Indore' | translate }}</option>
+                  <option value="pune">{{ 'Pune' | translate }}</option>
+                  <option value="mumbai">{{ 'Mumbai' | translate }}</option>
+                </select>
+              </div>
+              <span *ngIf="form.inputerror?.address" class="alertRedColor">{{ form.inputerror.address }}</span>
+            </div>
+
+            <div class="row pt-2 pl-2 pb-3">
+
+              <div class="col-md-3"></div>
+
+              <div class="pt-2">
+                <button *ngIf="!form.data.id>0" (click)="submit()" class="btn btn-success mr-2">
+                  {{'Save' | translate }} </button>
+               
+              </div>
+
+              <div class="col-md-1"></div>
+
+              <div class="pt-2">
+                <button *ngIf="form.data.id > 0" (click)="submit()" class="btn btn-success mr-2">
+                  {{ 'Update' | translate }}
+                </button>
+              </div>
+
+              <div class="pt-2">
+                <a class="btn btn-warning mr-1" type="button" [routerLink]="['/employeelist']"
+                  style="text-decoration: none; color: white;">
+                  {{ 'List' | translate }}
+                </a>
+              </div>
+
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
