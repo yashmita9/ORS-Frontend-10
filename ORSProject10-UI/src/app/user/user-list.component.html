@@ -21,12 +21,6 @@ background-size: cover;width:auto;
         </div>
       </div>
       
-           <div *ngIf="form.error && form.message == 'Database service is currently unavailable. Please try again later.'"
-            class="alert alert-danger alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{form.message | translate}}
-          </div>
-
       <!-- <button class="filebtn third">Button 3</button> -->
       <div class="row p-1">
         <div class="col-sm-1"></div>
@@ -81,6 +75,13 @@ background-size: cover;width:auto;
       <div *ngIf="!form.error && form.message != null" class="alert alert-success alert-dismissible">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         {{form.message}}
+      </div>
+       <div *ngIf="form.error && form.message && form.message != 'Invalid ID or Password'
+                  && form.message != 'Your Session has been Expired! Please Re-Login'"
+        class="alert alert-danger alert-dismissible">
+
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ form.message }}
       </div>
       <div class="p-1">
         <div class="table-responsive">
