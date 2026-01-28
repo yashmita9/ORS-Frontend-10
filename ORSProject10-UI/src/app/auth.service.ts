@@ -37,11 +37,17 @@ export class AuthService implements HttpInterceptor {
     
     return next.handle(req).pipe(
       catchError(err => {
-        if (err.status === 401 || err.status === 403) {
-      localStorage.clear();
-      this.router.navigateByUrl('/login/true'); // ✅ FIXED
-      return EMPTY;
-    }
+        if (err.status === 401) {
+
+  // DB down case → logout mat karo
+  if (err.error?.includes('Database') || err.error?.includes('Token')) {
+    return throwError(() => err);
+  }
+
+  localStorage.clear();
+  this.router.navigateByUrl('/login/true');
+  return EMPTY;
+}
 
     // 🟠 Database / system down
     if (err.status === 503) {
