@@ -135,7 +135,8 @@ export class BaseCtl implements OnInit {
         }
         console.log("List Size", _self.form.list.length);
       } else {
-        _self.form.error = false;
+        _self.form.list = [];
+        _self.form.error = true;     // ✅ VERY IMPORTANT
         _self.form.message = res.result.message;
       }
       console.log('FORM', _self.form);
