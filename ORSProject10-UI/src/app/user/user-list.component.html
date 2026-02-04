@@ -68,7 +68,7 @@ background-size: cover;width:auto;
       </div>
 
 
-      <!-- <div *ngIf="form.error" class="alert alert-danger alert-dismissible">
+    <div *ngIf="form.error" class="alert alert-danger alert-dismissible">
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         {{form.message}}
       </div>
@@ -82,16 +82,9 @@ background-size: cover;width:auto;
 
         <button type="button" class="close" data-dismiss="alert">&times;</button>
         {{ form.message }}
-      </div> -->
+      </div>
 
-      <div *ngIf="form.message"
-     class="alert alert-dismissible"
-     [ngClass]="form.error ? 'alert-danger' : 'alert-success'">
-
-  <button type="button" class="close" data-dismiss="alert">&times;</button>
-  {{ form.message }}
-
-</div>
+  
 
       <div class="p-1">
         <div class="table-responsive">
