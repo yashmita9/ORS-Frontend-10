@@ -7,7 +7,7 @@ import { Router } from '@angular/router'
 
 export class HttpServiceService {
 
-
+msg = '';
   token = '';
   form = {
     message: '',
