@@ -72,12 +72,12 @@ msg = '';
     console.log('ORS Error--', error);
 
     if (error && error.error && error.error.message && error.error.message.length > 0) {
-      msg = error.error.message[0];
+      this.msg = error.error.message[0];
     }
 
     const customError = {
       status: error.status,
-      message: msg
+      message: this.msg
     };
 
     callback(null, customError);
@@ -103,13 +103,13 @@ msg = '';
       console.log('ORS Error--', error);
 
       if (error && error.error && error.error.result && error.error.result.message) {
-        msg = error.error.result.message;
+        this.msg = error.error.result.message;
       }
 
       const errorRes = {
         success: false,
         result: {
-          message: msg
+          message: this.msg
         }
       };
 
