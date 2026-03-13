@@ -36,6 +36,8 @@ import { SpinnerComponent } from './spinner/spinner.component';
 import { MyprofileComponent } from './user/myprofile.component';
 import { EmployeeComponent } from './employee/employee.component';
 import { EmployeelistComponent } from './employee/employeelist.component';
+import { BankComponent } from './bank/bank.component';
+import { BankListComponent } from './bank/bank-list.component';
 
 
 
@@ -241,6 +243,21 @@ const routes: Routes = [
     {
         path: 'subject/:id',
         component: SubjectComponent
+
+    },
+    {
+        path: 'bank',
+        component: BankComponent
+
+    },
+    {
+        path: 'banklist',
+        component: BankListComponent
+
+    },
+    {
+        path: 'bank/:id',
+        component: BankComponent
 
     },
     {
