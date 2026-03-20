@@ -62,6 +62,8 @@ import { EmployeelistComponent } from './employee/employeelist.component';
 import { PageNotFoundComponent } from './page-not-found.component';
 import { BankComponent } from './bank/bank.component';
 import { BankListComponent } from './bank/bank-list.component';
+import { InventoryComponent } from './inventory/inventory.component';
+import { InventoryListComponent } from './inventory/inventory-list.component';
 
 
 
@@ -115,7 +117,9 @@ export function myHttpLoader(http: HttpClient) {
     EmployeeComponent,
     EmployeelistComponent,
     BankComponent,
-    BankListComponent
+    BankListComponent,
+    InventoryComponent,
+    InventoryListComponent
 
   
  

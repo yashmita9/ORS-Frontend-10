@@ -81,7 +81,7 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul *ngIf="form.data.role=='Admin'" class="nav navbar-nav pl-2">
       
-        <!-- =================================== USER =========================================== -->
+        <!-- =================================== BANK =========================================== -->
 
       <li class="nav-item dropdown" style="padding-left: 5px">
         <a class="nav-link dropdown-toggle" [routerLink]="['/#']" id="navbarDropdown" role="button"
@@ -93,6 +93,22 @@
             "Add Bank" | translate
             }}</a>
           <a class="dropdown-item" [routerLink]="['/banklist']"><i class="fa fa-list"></i>&nbsp;{{ " Bank List" |
+            translate }}</a>
+        </div>
+      </li>    
+
+       <!-- =================================== INVENTORY =========================================== -->
+
+      <li class="nav-item dropdown" style="padding-left: 5px">
+        <a class="nav-link dropdown-toggle" [routerLink]="['/#']" id="navbarDropdown" role="button"
+          data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <font style="color: white">{{ "Inventory" | translate }}</font>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          <a class="dropdown-item" [routerLink]="['/inventory']"><i class="fa fa-user"></i>&nbsp;&nbsp;{{
+            "Add Inventory" | translate
+            }}</a>
+          <a class="dropdown-item" [routerLink]="['/inventorylist']"><i class="fa fa-list"></i>&nbsp;{{ "Inventory List" |
             translate }}</a>
         </div>
       </li>    

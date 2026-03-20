@@ -38,6 +38,8 @@ import { EmployeeComponent } from './employee/employee.component';
 import { EmployeelistComponent } from './employee/employeelist.component';
 import { BankComponent } from './bank/bank.component';
 import { BankListComponent } from './bank/bank-list.component';
+import { InventoryComponent } from './inventory/inventory.component';
+import { InventoryListComponent } from './inventory/inventory-list.component';
 
 
 
@@ -258,6 +260,21 @@ const routes: Routes = [
     {
         path: 'bank/:id',
         component: BankComponent
+
+    },
+     {
+        path: 'inventory',
+        component: InventoryComponent
+
+    },
+    {
+        path: 'inventorylist',
+        component: InventoryListComponent
+
+    },
+    {
+        path: 'inventory/:id',
+        component: InventoryComponent
 
     },
     {
