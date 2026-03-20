@@ -36,7 +36,11 @@
       <div class="card-body">
         <form>
           <div style="text-align: center;">
+<<<<<<< HEAD
             <h1 class="text-primary">{{'Login' | translate}}</h1>
+=======
+            <h1 class="text-primary">{{'Login (13/03/2026)' | translate}}</h1>
+>>>>>>> 4dee9b32c423f6b4f4233b21ff22cca201e4495d
           </div>
           <input type="hidden" name="log
           inUrl" [(ngModel)]="form.loginUrl" class="form-control">
@@ -63,17 +67,17 @@
             {{form.message | translate}}
           </div>
 
-           <div *ngIf="form.error && form.message == 'Database service is currently unavailable. Please try again later.'"
-            class="alert alert-danger alert-dismissible">
-            <button type="button" class="close" data-dismiss="alert">&times;</button>
-            {{form.message | translate}}
-          </div>
-
-          <!-- <div *ngIf="form.error && form.message"
+           <!-- <div *ngIf="form.error && form.message == 'Database service is currently unavailable. Please try again later.'"
             class="alert alert-danger alert-dismissible">
             <button type="button" class="close" data-dismiss="alert">&times;</button>
             {{form.message | translate}}
           </div> -->
+
+          <div *ngIf="form.error && form.message"
+            class="alert alert-danger alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+            {{form.message | translate}}
+          </div>
 
           <div style="padding-top:3%">
             <span class="pt-2"><b>{{'Email Id ' | translate}}</b>
