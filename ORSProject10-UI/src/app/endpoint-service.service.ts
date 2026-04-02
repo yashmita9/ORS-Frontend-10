@@ -21,8 +21,8 @@ export class EndpointServiceService {
   public TIMETABLE = this.SERVER_URL + "/TimeTable";
   public BANK = this.SERVER_URL + "/Bank";
   public INVENTORY = this.SERVER_URL + "/Inventory";
+   public PRESCRIPTION = this.SERVER_URL + "/Prescription";
   public JASPERREPORT = this.SERVER_URL + "/Jasper";
-
   public EMPLOYEE = this.SERVER_URL + "/Employee"
  
 

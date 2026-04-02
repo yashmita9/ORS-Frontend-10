@@ -40,6 +40,8 @@ import { BankComponent } from './bank/bank.component';
 import { BankListComponent } from './bank/bank-list.component';
 import { InventoryComponent } from './inventory/inventory.component';
 import { InventoryListComponent } from './inventory/inventory-list.component';
+import { PrescriptionComponent } from './prescription/prescription.component';
+import { PrescriptionListComponent } from './prescription/prescription-list.component';
 
 
 
@@ -275,6 +277,21 @@ const routes: Routes = [
     {
         path: 'inventory/:id',
         component: InventoryComponent
+
+    },
+     {
+        path: 'prescription',
+        component: PrescriptionComponent
+
+    },
+    {
+        path: 'prescriptionlist',
+        component: PrescriptionListComponent
+
+    },
+    {
+        path: 'prescription/:id',
+        component: PrescriptionComponent
 
     },
     {

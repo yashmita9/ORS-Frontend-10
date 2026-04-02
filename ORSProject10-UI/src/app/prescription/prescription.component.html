@@ -1,0 +1,156 @@
+<app-navbar></app-navbar>
+
+
+<style>
+  .grad {
+    background-image: linear-gradient(to bottom right, rgb(32, 168, 168), rgb(219, 231, 237));
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding-bottom: 25px;
+  }
+
+  .background {
+    padding-top: 3%;
+    padding-bottom: 13%;
+    background: url('assets/files/wall.jpg') no-repeat center center;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
+    height: auto;
+  }
+
+  .required-field {
+    color: red;
+  }
+
+  .alertRedColor {
+    color: red;
+  }
+</style>
+
+<div class="container-fluid background" style="padding-top: 8%">
+  <div class="row justify-content-center">
+    <div class="col-sm-8 col-md-6 col-lg-4">
+      <div class="card">
+        <div class="card-body shadow-lg grad">
+
+          <form name="prescriptionForm">
+
+            <h2 *ngIf="!form.data.id" class="text-primary font-weight-bold text-center">
+              {{ 'Add Prescription' | translate }}
+            </h2>
+
+            <h2 *ngIf="form.data.id" class="text-primary font-weight-bold text-center">
+              {{ 'Update Prescription' | translate }}
+            </h2>
+
+            <!-- Alerts -->
+            <div *ngIf="form.error && form.message" class="alert alert-danger">
+              {{ form.message }}
+            </div>
+
+            <div *ngIf="!form.error && form.message" class="alert alert-success">
+              {{ form.message }}
+            </div>
+
+            <!-- Patient Name -->
+            <div class="form-group pt-2">
+              <label><b>Patient Name</b><span class="required-field">*</span></label>
+              <input type="text" name="patientName"
+                     [(ngModel)]="form.data.patientName"
+                     class="form-control"
+                     placeholder="Enter patient name">
+              <span *ngIf="form.inputerror.patientName" class="alertRedColor">
+                {{ form.inputerror.patientName }}
+              </span>
+            </div>
+
+            <!-- Doctor Name (Preload Dropdown) -->
+            <div class="form-group pt-2">
+              <label>
+                <b>{{ 'Doctor Name' | translate }}</b>
+                <span class="required-field"></span>
+              </label>
+
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-venus grey-text"></i>
+                  </div>
+                </div>
+
+                <select class="form-control" name="doctorName" id="doctorName" [(ngModel)]="form.data.doctorName"
+                  style="cursor: pointer;">
+                  <option [ngValue]="" value="undefined">{{'Please select' | translate }}</option>
+                  <option value="Dr.Pradeep">{{'Dr.Pradeep' | translate }}</option>
+                  <option value="Dr. Pooja">{{'Dr. Pooja' | translate }}</option>
+                  <option value="Dr. Sonu">{{'Dr. Sonu' | translate }}</option>
+                </select>
+              </div>
+
+              <span *ngIf="form.inputerror.doctorName" class="alertRedColor">
+                {{ form.inputerror.doctorName }}
+              </span>
+            </div>
+
+            <!-- Mobile Number -->
+            <div class="form-group pt-2">
+              <label><b>Mobile Number</b><span class="required-field">*</span></label>
+              <input type="text" name="mobileNumber"
+                     [(ngModel)]="form.data.mobileNumber"
+                     class="form-control"
+                     maxlength="10"
+                     placeholder="Enter mobile number">
+              <span *ngIf="form.inputerror.mobileNumber" class="alertRedColor">
+                {{ form.inputerror.mobileNumber }}
+              </span>
+            </div>
+
+            <!-- Prescribed Date -->
+            <div class="form-group pt-2">
+              <label><b>Prescribed Date</b><span class="required-field">*</span></label>
+              <input type="date"
+                     name="prescribedDate"
+                     [(ngModel)]="form.data.prescribedDate"
+                     class="form-control">
+              <span *ngIf="form.inputerror.prescribedDate" class="alertRedColor">
+                {{ form.inputerror.prescribedDate }}
+              </span>
+            </div>
+
+            <!-- Buttons -->
+            <div class="row pt-2 pl-2 pb-3">
+
+              <div class="col-md-3"></div>
+
+              <div class="pt-2">
+                <button *ngIf="!form.data.id > 0" (click)="submit()" class="btn btn-success mr-2">
+                  {{ 'Save' | translate }}
+                </button>
+              </div>
+
+              <div class="col-md-1"></div>
+
+              <div class="pt-2">
+                <button *ngIf="form.data.id > 0" (click)="submit()" class="btn btn-success mr-2">
+                  {{ 'Update' | translate }}
+                </button>
+              </div>
+
+              <div class="pt-2">
+                <a class="btn btn-warning mr-1" type="button" [routerLink]="['/prescriptionlist']"
+                   style="text-decoration: none; color: white;">
+                  {{ 'List' | translate }}
+                </a>
+              </div>
+
+            </div>
+
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
