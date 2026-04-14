@@ -42,6 +42,8 @@ import { InventoryComponent } from './inventory/inventory.component';
 import { InventoryListComponent } from './inventory/inventory-list.component';
 import { PrescriptionComponent } from './prescription/prescription.component';
 import { PrescriptionListComponent } from './prescription/prescription-list.component';
+import { UploadComponent } from './upload/upload.component';
+import { UploadListComponent } from './upload/upload-list.component';
 
 
 
@@ -294,6 +296,21 @@ const routes: Routes = [
         component: PrescriptionComponent
 
     },
+    {
+        path: 'upload',
+        component: UploadComponent
+
+    },
+    {
+        path: 'uploadlist',
+        component: UploadListComponent
+
+    },
+    {
+        path: 'upload/:id',
+        component: UploadComponent
+    },
+      
     {
         path: 'myprofile',
         component: MyprofileComponent
