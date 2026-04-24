@@ -44,6 +44,8 @@ import { PrescriptionComponent } from './prescription/prescription.component';
 import { PrescriptionListComponent } from './prescription/prescription-list.component';
 import { UploadComponent } from './upload/upload.component';
 import { UploadListComponent } from './upload/upload-list.component';
+import { BroadcastComponent } from './broadcast/broadcast.component';
+import { BroadcastListComponent } from './broadcast/broadcast-list.component';
 
 
 
@@ -294,6 +296,21 @@ const routes: Routes = [
     {
         path: 'prescription/:id',
         component: PrescriptionComponent
+
+    },
+     {
+        path: 'broadcast',
+        component: BroadcastComponent
+
+    },
+    {
+        path: 'broadcastlist',
+        component: BroadcastListComponent
+
+    },
+    {
+        path: 'broadcast/:id',
+        component: BroadcastComponent
 
     },
     {
