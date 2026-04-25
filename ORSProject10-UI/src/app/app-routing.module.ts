@@ -46,6 +46,9 @@ import { UploadComponent } from './upload/upload.component';
 import { UploadListComponent } from './upload/upload-list.component';
 import { BroadcastComponent } from './broadcast/broadcast.component';
 import { BroadcastListComponent } from './broadcast/broadcast-list.component';
+import { EventComponent } from './event/event.component';
+import { EventListComponent } from './event/event-list.component';
+
 
 
 
@@ -311,6 +314,21 @@ const routes: Routes = [
     {
         path: 'broadcast/:id',
         component: BroadcastComponent
+
+    },
+     {
+        path: 'event',
+        component: EventComponent
+
+    },
+    {
+        path: 'eventlist',
+        component: EventListComponent
+
+    },
+    {
+        path: 'event/:id',
+        component: EventComponent
 
     },
     {

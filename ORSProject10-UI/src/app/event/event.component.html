@@ -1,0 +1,200 @@
+<app-navbar></app-navbar>
+
+<style>
+  .grad {
+    background-image: linear-gradient(to bottom right, rgb(32, 168, 168), rgb(219, 231, 237));
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding-bottom: 25px;
+  }
+
+  .background {
+    padding-top: 3%;
+    padding-bottom: 13%;
+    background: url('assets/files/wall.jpg') no-repeat center center;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
+    height: auto;
+  }
+
+  .required-field {
+    color: red;
+  }
+
+  .alertRedColor {
+    color: red;
+  }
+</style>
+
+<div class="container-fluid background" style="padding-top: 8%">
+  <div class="row justify-content-center">
+    <div class="col-sm-8 col-md-6 col-lg-4">
+      <div class="card">
+        <div class="card-body shadow-lg grad">
+
+          <form name="eventForm">
+
+            <h2 *ngIf="!form.data.id" class="text-primary font-weight-bold text-center">
+              {{ 'Add Event' | translate }}
+            </h2>
+
+            <h2 *ngIf="form.data.id" class="text-primary font-weight-bold text-center">
+              {{ 'Update Event' | translate }}
+            </h2>
+
+            <!-- Messages -->
+            <div *ngIf="form.error && form.message" class="alert alert-danger">
+              {{ form.message }}
+            </div>
+
+            <div *ngIf="!form.error && form.message" class="alert alert-success">
+              {{ form.message }}
+            </div>
+
+            <!-- Event Code -->
+            <div class="form-group pt-2">
+              <label>
+                <b>{{ 'Event Code' | translate }}</b>
+                <span class="required-field">*</span>
+              </label>
+
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-code"></i>
+                  </div>
+                </div>
+
+                <input type="text" name="eventCode"
+                  [(ngModel)]="form.data.eventCode"
+                  class="form-control"
+                  maxlength="20"
+                  placeholder="{{ 'Enter eventCode' | translate }}">
+              </div>
+
+              <span *ngIf="form.inputerror.eventCode" class="alertRedColor">
+                {{ form.inputerror.eventCode }}
+              </span>
+            </div>
+
+            <!-- Event Name -->
+            <div class="form-group pt-2">
+              <label>
+                <b>{{ 'Event Name' | translate }}</b>
+                <span class="required-field">*</span>
+              </label>
+
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-calendar"></i>
+                  </div>
+                </div>
+
+                <input type="text" name="eventName"
+                  [(ngModel)]="form.data.eventName"
+                  class="form-control"
+                  maxlength="50"
+                  placeholder="{{ 'Enter eventName' | translate }}">
+              </div>
+
+              <span *ngIf="form.inputerror.eventName" class="alertRedColor">
+                {{ form.inputerror.eventName }}
+              </span>
+            </div>
+
+            <!-- Event Date -->
+            <div class="form-group pt-2">
+              <label>
+                <b>{{ 'Event Date' | translate }}</b>
+                <span class="required-field">*</span>
+              </label>
+
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-calendar-check-o"></i>
+                  </div>
+                </div>
+
+                <input type="date" name="eventDate"
+                  [(ngModel)]="form.data.eventDate"
+                  class="form-control">
+              </div>
+
+              <span *ngIf="form.inputerror.eventDate" class="alertRedColor">
+                {{ form.inputerror.eventDate }}
+              </span>
+            </div>
+
+            <!-- Status -->
+            <div class="form-group pt-2">
+              <label>
+                <b>{{ 'Status' | translate }}</b>
+              </label>
+
+              <div class="input-group">
+                <div class="input-group-prepend">
+                  <div class="input-group-text">
+                    <i class="fa fa-toggle-on"></i>
+                  </div>
+                </div>
+
+                <select class="form-control"
+                  name="status"
+                  [(ngModel)]="form.data.status">
+
+                  <option [ngValue]="undefined">{{ 'Select Status' | translate }}</option>
+                  <option value="Active">{{ 'Active' | translate }}</option>
+                  <option value="Inactive">{{ 'Inactive' | translate }}</option>
+
+                </select>
+              </div>
+
+              <span *ngIf="form.inputerror.status" class="alertRedColor">
+                {{ form.inputerror.status }}
+              </span>
+            </div>
+
+            <!-- Buttons -->
+            <div class="row pt-2 pl-2 pb-3">
+
+              <div class="col-md-3"></div>
+
+              <div class="pt-2">
+                <button *ngIf="!form.data.id > 0"
+                  (click)="submit()"
+                  class="btn btn-success mr-2">
+                  {{ 'Save' | translate }}
+                </button>
+              </div>
+
+              <div class="col-md-1"></div>
+
+              <div class="pt-2">
+                <button *ngIf="form.data.id > 0"
+                  (click)="submit()"
+                  class="btn btn-success mr-2">
+                  {{ 'Update' | translate }}
+                </button>
+              </div>
+
+              <div class="pt-2">
+                <a class="btn btn-warning"
+                  [routerLink]="['/eventlist']">
+                  {{ 'List' | translate }}
+                </a>
+              </div>
+
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

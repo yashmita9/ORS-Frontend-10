@@ -70,6 +70,8 @@ import { UploadComponent } from './upload/upload.component';
 import { UploadListComponent } from './upload/upload-list.component';
 import { BroadcastComponent } from './broadcast/broadcast.component';
 import { BroadcastListComponent } from './broadcast/broadcast-list.component';
+import { EventComponent } from './event/event.component';
+import { EventListComponent } from './event/event-list.component';
 
 
 
@@ -131,7 +133,9 @@ export function myHttpLoader(http: HttpClient) {
     UploadComponent,
     UploadListComponent,
     BroadcastComponent,
-    BroadcastListComponent
+    BroadcastListComponent,
+    EventComponent,
+    EventListComponent
 
   
  

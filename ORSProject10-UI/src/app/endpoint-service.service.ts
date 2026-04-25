@@ -24,8 +24,9 @@ export class EndpointServiceService {
    public PRESCRIPTION = this.SERVER_URL + "/Prescription";
    public UPLOAD = this.SERVER_URL + "/Upload";
   public JASPERREPORT = this.SERVER_URL + "/Jasper";
-  public EMPLOYEE = this.SERVER_URL + "/Employee"
-  public BROADCAST = this.SERVER_URL + "/Broadcast"
+  public EMPLOYEE = this.SERVER_URL + "/Employee";
+  public BROADCAST = this.SERVER_URL + "/Broadcast";
+    public EVENT = this.SERVER_URL + "/Event";
  
 
 

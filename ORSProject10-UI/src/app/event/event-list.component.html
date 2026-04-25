@@ -1,0 +1,174 @@
+<app-navbar></app-navbar>
+
+<style>
+  #nnn {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .panel-heading {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search-inputs {
+    margin-top: 20px;
+  }
+
+  .search-inputs .form-control,
+  .search-inputs .btn {
+    margin-bottom: 10px;
+  }
+
+  .content-wrapper {
+    background: url('assets/files/teahu.png') no-repeat center center;
+    background-attachment: fixed;
+    background-size: cover;
+    width: auto;
+    height: 105vh;
+    padding: 20px;
+  }
+
+  .table-responsive {
+    margin-top: 20px;
+  }
+
+  .search-inputs .col-sm-2,
+  .search-inputs .col-sm-1 {
+    padding: 0 5px;
+  }
+
+  .alertRedColor {
+    color: red;
+  }
+</style>
+
+<div class="content-wrapper">
+  <div class="container-fluid">
+    <div class="panel panel-primary" style="padding-top: 73px;">
+
+      <div class="panel-heading">
+        <h1 class="text-primary font-weight-bold">{{ 'Event List' | translate }}</h1>
+      </div>
+
+      <!-- 🔍 Search Section -->
+      <div class="row search-inputs p-1 justify-content-center g-3">
+
+        <div class="col-sm-2">
+          <input type="text" name="eventCode" [(ngModel)]="form.searchParams.eventCode"
+            class="form-control" placeholder="{{ 'Enter eventCode' | translate }}">
+        </div>
+
+        <div class="col-sm-2">
+          <input type="text" name="eventName" [(ngModel)]="form.searchParams.eventName"
+            class="form-control" placeholder="{{ 'Enter eventName' | translate }}">
+        </div>
+
+        <!-- <div class="col-sm-2">
+          <input type="date" name="eventDate" [(ngModel)]="form.searchParams.eventDate"
+            class="form-control">
+        </div> -->
+
+        <div class="col-sm-2">
+          <select class="form-control" name="status" [(ngModel)]="form.searchParams.status">
+            <option [ngValue]="undefined">{{ 'Select Status' | translate }}</option>
+            <option value="Active">{{ 'Active' | translate }}</option>
+            <option value="Inactive">{{ 'Inactive' | translate }}</option>
+          </select>
+        </div>
+
+        <div class="col-sm-1">
+          <button (click)="submit()" class="btn btn-primary w-100">
+            {{ 'Search' | translate }}
+          </button>
+        </div>
+
+        <div>
+          <button (click)="forward('/event')" type="button" class="btn btn-success w-100">
+            {{ 'Add Event' | translate }}
+          </button>
+        </div>
+
+        <div class="col-sm-1">
+          <button (click)="deleteMany()" class="btn btn-danger w-100">
+            {{ 'Delete' | translate }}
+          </button>
+        </div>
+
+      </div>
+
+      <div *ngIf="form.error" class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ form.message }}
+      </div>
+
+      <div *ngIf="!form.error && form.message != null" class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ form.message }}
+      </div>
+
+      <!-- 📋 Table -->
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover table-dark">
+
+          <thead class="thead-dark text-uppercase">
+            <tr align="center">
+              <th><input type="checkbox" [(ngModel)]="isMasterSel" (change)="checkUncheckAll($event)" /></th>
+              <th>{{ 'S.No' | translate }}</th>
+              <th>{{ 'Event Code' | translate }}</th>
+              <th>{{ 'Event Name' | translate }}</th>
+              <th>{{ 'Event Date' | translate }}</th>
+              <th>{{ 'Status' | translate }}</th>
+              <th>{{ 'Edit' | translate }}</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let m of form.list; let i = index" align="center">
+
+              <td><input type="checkbox" #checkboxes (change)="checklistUpdate()" name="list_name" [id]="m.id" /></td>
+
+              <td>{{ (form.pageNo * 5) + i + 1 }}</td>
+              <td>{{ m.eventCode }}</td>
+              <td>{{ m.eventName }}</td>
+              <td>{{ m.eventDate | date:'dd-MM-yyyy' }}</td>
+              <td>{{ m.status }}</td>
+
+              <td>
+                <button class="fa fa-edit text-primary" id="nnn"
+                  (click)="forward('/event/' + m.id)">
+                </button>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- 📄 Pagination -->
+        <div class="d-flex justify-content-between mt-3">
+
+          <button (click)="previous()" [disabled]="form.pageNo == 0"
+            class="btn btn-info">
+            {{ 'Previous' | translate }}
+          </button>
+
+          <a class="btn btn-warning" [routerLink]="['/eventlist']" (click)="exit()">
+            {{ 'Reset' | translate }}
+          </a>
+
+          <button (click)="next()" [disabled]="nextList == 0"
+            class="btn btn-info">
+            {{ 'Next' | translate }}
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
