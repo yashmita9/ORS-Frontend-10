@@ -7,7 +7,7 @@ describe('BroadcastListComponent', () => {
   let fixture: ComponentFixture<BroadcastListComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
+    TestBed.configureTestingModule({ 
       declarations: [ BroadcastListComponent ]
     })
     .compileComponents();

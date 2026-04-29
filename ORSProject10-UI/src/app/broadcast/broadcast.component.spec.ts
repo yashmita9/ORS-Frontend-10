@@ -10,7 +10,7 @@ describe('BroadcastComponent', () => {
     TestBed.configureTestingModule({
       declarations: [ BroadcastComponent ]
     })
-    .compileComponents();
+    .compileComponents(); 
   }));
 
   beforeEach(() => {
