@@ -11,7 +11,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class BroadcastListComponent extends BaseListCtl {
 
-  errorMessageBroadcastCode: string;
+  errorMessageBroadcastCode: string; 
 
   constructor(
     public locator: ServiceLocatorService,

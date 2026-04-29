@@ -14,7 +14,7 @@ export class BroadcastComponent extends BaseCtl {
     public locator: ServiceLocatorService,
     public route: ActivatedRoute
   ) {
-    super(locator.endpoints.BROADCAST, locator, route);
+    super(locator.endpoints.BROADCAST, locator, route); 
   }
 
   // ✅ Validation
