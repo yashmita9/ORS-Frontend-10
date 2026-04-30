@@ -1,0 +1,148 @@
+<app-navbar></app-navbar>
+
+<style>
+  .grad {
+    background-image: linear-gradient(to bottom right, rgb(32, 168, 168), rgb(219, 231, 237));
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding-bottom: 25px;
+  }
+
+  .background {
+    padding-top: 3%;
+    padding-bottom: 13%;
+    background: url('assets/files/wall.jpg') no-repeat center center;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
+    height: auto;
+  }
+
+  .required-field {
+    color: red;
+  }
+
+  .alertRedColor {
+    color: red;
+  }
+</style>
+
+<div class="container-fluid background" style="padding-top: 8%">
+  <div class="row justify-content-center">
+    <div class="col-sm-8 col-md-6 col-lg-4">
+
+      <div class="card">
+        <div class="card-body shadow-lg grad">
+
+          <form name="batchForm">
+
+            <!-- Heading -->
+            <h2 *ngIf="!form.data.id" class="text-primary text-center">
+              Add Batch
+            </h2>
+
+            <h2 *ngIf="form.data.id" class="text-primary text-center">
+              Update Batch
+            </h2>
+
+            <!-- Alerts -->
+            <div *ngIf="form.error && form.message" class="alert alert-danger">
+              {{ form.message }}
+            </div>
+
+            <div *ngIf="!form.error && form.message" class="alert alert-success">
+              {{ form.message }}
+            </div>
+
+            <!-- Batch Code -->
+            <div class="form-group pt-2">
+              <label>
+                <b>Batch Code</b>
+                <span class="required-field">*</span>
+              </label>
+
+              <input type="text" name="batchCode" [(ngModel)]="form.data.batchCode" class="form-control" maxlength="20"
+                placeholder="Enter Batch Code">
+
+              <span *ngIf="form.inputerror.batchCode" class="alertRedColor">
+                {{ form.inputerror.batchCode }}
+              </span>
+            </div>
+
+            <!-- Total Messages -->
+            <div class="form-group pt-2">
+              <label>
+                <b>Total Messages</b>
+                <span class="required-field">*</span>
+              </label>
+
+              <input type="number" name="totalMessages" [(ngModel)]="form.data.totalMessages" class="form-control"
+                placeholder="Enter Total Messages">
+
+              <span *ngIf="form.inputerror.totalMessages" class="alertRedColor">
+                {{ form.inputerror.totalMessages }}
+              </span>
+            </div>
+
+            <!-- Processed Count -->
+            <div class="form-group pt-2">
+              <label>
+                <b>Processed Count</b>
+                <span class="required-field">*</span>
+              </label>
+
+              <input type="number" name="processedCount" [(ngModel)]="form.data.processedCount" class="form-control"
+                placeholder="Enter Processed Count">
+
+              <span *ngIf="form.inputerror.processedCount" class="alertRedColor">
+                {{ form.inputerror.processedCount }}
+              </span>
+            </div>
+
+            <!-- Status -->
+            <div class="form-group pt-2">
+              <label>
+                <b>Status</b>
+                <span class="required-field">*</span>
+              </label>
+
+              <select class="form-control" name="status" [(ngModel)]="form.data.status" style="cursor: pointer;">
+
+                <option [ngValue]="undefined">Select Status</option>
+                <option value="PENDING">PENDING</option>
+                <option value="PROCESSING">PROCESSING</option>
+                <option value="COMPLETED">COMPLETED</option>
+              </select>
+
+              <span *ngIf="form.inputerror.status" class="alertRedColor">
+                {{ form.inputerror.status }}
+              </span>
+            </div>
+
+            <!-- Buttons -->
+            <div class="row pt-3 pb-2 justify-content-center">
+
+              <button *ngIf="!form.data.id" (click)="submit()" class="btn btn-success mr-2">
+                Save
+              </button>
+
+              <button *ngIf="form.data.id" (click)="submit()" class="btn btn-success mr-2">
+                Update
+              </button>
+
+              <a class="btn btn-warning" [routerLink]="['/batchlist']" style="color: white;">
+                List
+              </a>
+
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

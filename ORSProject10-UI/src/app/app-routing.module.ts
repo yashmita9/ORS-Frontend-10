@@ -48,6 +48,8 @@ import { BroadcastComponent } from './broadcast/broadcast.component';
 import { BroadcastListComponent } from './broadcast/broadcast-list.component';
 import { EventComponent } from './event/event.component';
 import { EventListComponent } from './event/event-list.component';
+import { BatchListComponent } from './batch/batch-list.component';
+import { BatchComponent } from './batch/batch.component';
 
 
 
@@ -314,6 +316,21 @@ const routes: Routes = [
     {
         path: 'broadcast/:id',
         component: BroadcastComponent
+
+    },
+     {
+        path: 'batch',
+        component: BatchComponent
+
+    },
+    {
+        path: 'batchlist',
+        component: BatchListComponent
+
+    },
+    {
+        path: 'batch/:id',
+        component: BatchComponent
 
     },
      {

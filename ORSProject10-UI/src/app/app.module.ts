@@ -72,6 +72,8 @@ import { BroadcastComponent } from './broadcast/broadcast.component';
 import { BroadcastListComponent } from './broadcast/broadcast-list.component';
 import { EventComponent } from './event/event.component';
 import { EventListComponent } from './event/event-list.component';
+import { BatchComponent } from './batch/batch.component';
+import { BatchListComponent } from './batch/batch-list.component';
 
 
 
@@ -135,7 +137,9 @@ export function myHttpLoader(http: HttpClient) {
     BroadcastComponent,
     BroadcastListComponent,
     EventComponent,
-    EventListComponent
+    EventListComponent,
+    BatchComponent,
+    BatchListComponent
 
   
  
