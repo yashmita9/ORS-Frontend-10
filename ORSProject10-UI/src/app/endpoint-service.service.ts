@@ -27,6 +27,7 @@ export class EndpointServiceService {
   public EMPLOYEE = this.SERVER_URL + "/Employee";
   public BROADCAST = this.SERVER_URL + "/Broadcast";
     public BATCH = this.SERVER_URL + "/Batch";
+    public ACCOUNT = this.SERVER_URL + "/Account";
     public EVENT = this.SERVER_URL + "/Event";
  
 

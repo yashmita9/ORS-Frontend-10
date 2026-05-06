@@ -50,6 +50,8 @@ import { EventComponent } from './event/event.component';
 import { EventListComponent } from './event/event-list.component';
 import { BatchListComponent } from './batch/batch-list.component';
 import { BatchComponent } from './batch/batch.component';
+import { AccountComponent } from './account/account.component';
+import { AccountListComponent } from './account/account-list.component';
 
 
 
@@ -331,6 +333,21 @@ const routes: Routes = [
     {
         path: 'batch/:id',
         component: BatchComponent
+
+    },
+    {
+        path: 'account',
+        component: AccountComponent
+
+    },
+    {
+        path: 'accountlist',
+        component: AccountListComponent
+
+    },
+    {
+        path: 'account/:id',
+        component: AccountComponent
 
     },
      {

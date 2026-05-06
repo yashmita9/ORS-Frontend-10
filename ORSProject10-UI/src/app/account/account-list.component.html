@@ -1,0 +1,177 @@
+<app-navbar></app-navbar>
+
+<style>
+  #nnn {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .panel-heading {
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .search-inputs {
+    margin-top: 20px;
+  }
+
+  .search-inputs .form-control,
+  .search-inputs .btn {
+    margin-bottom: 10px;
+  }
+
+  .content-wrapper {
+    background: url('assets/files/teahu.png') no-repeat center center;
+    background-attachment: fixed;
+    background-size: cover;
+    width: auto;
+    height: 105vh;
+    padding: 20px;
+  }
+
+  .table-responsive {
+    margin-top: 20px;
+  }
+
+  .search-inputs .col-sm-2,
+  .search-inputs .col-sm-1 {
+    padding: 0 5px;
+  }
+
+  .alertRedColor {
+    color: red;
+  }
+</style>
+<div class="content-wrapper">
+  <div class="container-fluid">
+    <div class="panel panel-primary" style="padding-top: 73px;">
+
+      <div class="panel-heading">
+        <h1 class="text-primary font-weight-bold">Account List</h1>
+      </div>
+
+      <!-- 🔍 SEARCH SECTION -->
+      <div class="row search-inputs p-1 justify-content-center g-3">
+
+        <!-- User Name -->
+        <div class="col-sm-2">
+          <input type="text" name="userName" [(ngModel)]="form.searchParams.userName" class="form-control"
+            placeholder="Enter User Name">
+        </div>
+
+        <!-- Account Type -->
+        <div class="col-sm-2">
+          <select class="form-control" name="accountType" [(ngModel)]="form.searchParams.accountType">
+
+            <option [ngValue]="undefined">Select Account Type</option>
+            <option value="Saving">Saving</option>
+            <option value="Current">Current</option>
+
+          </select>
+        </div>
+
+        <!-- Status -->
+        <div class="col-sm-2">
+          <select class="form-control" name="status" [(ngModel)]="form.searchParams.status">
+
+            <option [ngValue]="undefined">Select Status</option>
+            <option value="Active">Active</option>
+            <option value="Inactive">Inactive</option>
+
+          </select>
+        </div>
+
+        <!-- Buttons -->
+        <div class="col-sm-1">
+          <button (click)="submit()" class="btn btn-primary w-100">Search</button>
+        </div>
+
+        <div>
+          <button (click)="forward('/account')" class="btn btn-success w-100">
+            Add Account
+          </button>
+        </div>
+
+        <div class="col-sm-1">
+          <button (click)="deleteMany()" class="btn btn-danger w-100">
+            Delete
+          </button>
+        </div>
+
+      </div>
+
+      <!-- ALERTS -->
+       <div *ngIf="form.error" class="alert alert-danger alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ form.message }}
+      </div>
+
+      <div *ngIf="!form.error && form.message != null" class="alert alert-success alert-dismissible">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        {{ form.message }}
+      </div>
+
+
+      <!-- 📊 TABLE -->
+      <div class="table-responsive">
+        <table class="table table-bordered table-hover table-dark">
+
+          <thead>
+            <tr align="center">
+             <th><input type="checkbox" [(ngModel)]="isMasterSel" name="list_name"
+                  (change)="checkUncheckAll($event)" /></th>
+              <th>S.No</th>
+              <th>Account Code</th>
+              <th>User Name</th>
+              <th>Account Type</th>
+              <th>Status</th>
+              <th>Edit</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let m of form.list; let i = index" align="center">
+
+               <td><input type="checkbox" #checkboxes (change)="checklistUpdate()" name="list_name" [id]="m.id" /></td>
+
+              <td>{{ (form.pageNo * 5) + i + 1 }}</td>
+              <td>{{ m.accountCode }}</td>
+              <td>{{ m.userName }}</td>
+              <td>{{ m.accountType }}</td>
+              <td>{{ m.status }}</td>
+
+              <td>
+                <button class="fa fa-edit text-primary" id="nnn" (click)="forward('/account/' + m.id)">
+                </button>
+              </td>
+
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- PAGINATION -->
+        <div class="d-flex justify-content-between mt-3">
+
+          <button (click)="previous()" [disabled]="form.pageNo == 0" class="btn btn-info">
+            Previous
+          </button>
+
+          <a class="btn btn-warning" [routerLink]="['/accountlist']" (click)="exit()">
+            Reset
+          </a>
+
+          <button (click)="next()" [disabled]="nextList == 0" class="btn btn-info">
+            Next
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>

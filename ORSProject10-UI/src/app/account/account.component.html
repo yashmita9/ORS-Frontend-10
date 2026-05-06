@@ -1,0 +1,151 @@
+<app-navbar></app-navbar>
+
+<style>
+  .grad {
+    background-image: linear-gradient(to bottom right, rgb(32, 168, 168), rgb(219, 231, 237));
+    background-repeat: no-repeat;
+    background-size: 100%;
+    padding-bottom: 25px;
+  }
+
+  .background {
+    padding-top: 3%;
+    padding-bottom: 13%;
+    background: url('assets/files/wall.jpg') no-repeat center center;
+    background-attachment: fixed;
+    background-size: cover;
+    width: 100%;
+  }
+
+  .required-field {
+    color: red;
+  }
+
+  .alertRedColor {
+    color: red;
+  }
+</style>
+
+<div class="container-fluid background" style="padding-top: 8%">
+  <div class="row justify-content-center">
+    <div class="col-sm-8 col-md-6 col-lg-4">
+
+      <div class="card">
+        <div class="card-body shadow-lg grad">
+
+          <form name="accountForm">
+
+            <!-- Heading -->
+            <h2 *ngIf="!form.data.id" class="text-primary text-center">
+              Add Account
+            </h2>
+
+            <h2 *ngIf="form.data.id" class="text-primary text-center">
+              Update Account
+            </h2>
+
+            <!-- Alerts -->
+            <div *ngIf="form.error && form.message" class="alert alert-danger">
+              {{ form.message }}
+            </div>
+
+            <div *ngIf="!form.error && form.message" class="alert alert-success">
+              {{ form.message }}
+            </div>
+
+            <!-- Account Code -->
+            <div class="form-group pt-2">
+              <label>
+                <b>Account Code</b>
+                <span class="required-field">*</span>
+              </label>
+
+              <input type="text" name="accountCode" [(ngModel)]="form.data.accountCode" class="form-control"
+                maxlength="20" placeholder="Enter Account Code">
+
+              <span *ngIf="form.inputerror.accountCode" class="alertRedColor">
+                {{ form.inputerror.accountCode }}
+              </span>
+            </div>
+
+            <!-- User Name -->
+            <div class="form-group pt-2">
+              <label>
+                <b>User Name</b>
+                <span class="required-field">*</span>
+              </label>
+
+              <input type="text" name="userName" [(ngModel)]="form.data.userName" class="form-control" maxlength="50"
+                placeholder="Enter User Name">
+
+              <span *ngIf="form.inputerror.userName" class="alertRedColor">
+                {{ form.inputerror.userName }}
+              </span>
+            </div>
+
+            <!-- Account Type -->
+            <div class="form-group pt-2">
+              <label>
+                <b>Account Type</b>
+                <span class="required-field">*</span>
+              </label>
+
+              <select class="form-control" name="accountType" [(ngModel)]="form.data.accountType"
+                style="cursor: pointer;">
+
+                <option [ngValue]="undefined">Select Account Type</option>
+                <option value="Saving">Saving</option>
+                <option value="Current">Current</option>
+
+              </select>
+
+              <span *ngIf="form.inputerror.accountType" class="alertRedColor">
+                {{ form.inputerror.accountType }}
+              </span>
+            </div>
+            <!-- Status -->
+            <div class="form-group pt-2">
+              <label>
+                <b>Status</b>
+                <span class="required-field">*</span>
+              </label>
+
+              <select class="form-control" name="status" [(ngModel)]="form.data.status" style="cursor: pointer;">
+
+                <option [ngValue]="undefined">Select Status</option>
+                <option value="Active">Active</option>
+                <option value="Inactive">Inactive</option>
+
+              </select>
+
+              <span *ngIf="form.inputerror.status" class="alertRedColor">
+                {{ form.inputerror.status }}
+              </span>
+            </div>
+            <!-- Buttons -->
+            <div class="row pt-3 pb-2 justify-content-center">
+
+              <button *ngIf="!form.data.id" (click)="submit()" class="btn btn-success mr-2">
+                Save
+              </button>
+
+              <button *ngIf="form.data.id" (click)="submit()" class="btn btn-success mr-2">
+                Update
+              </button>
+
+              <a class="btn btn-warning" [routerLink]="['/accountlist']" style="color: white;">
+                List
+              </a>
+
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<app-footer></app-footer>
